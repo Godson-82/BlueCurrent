@@ -1,0 +1,252 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-elevated);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.18),
+    0 1px 4px rgba(0, 212, 170, 0.05);
+  overflow: hidden;
+  position: relative;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+}
+
+.panel-header {
+  padding: 14px 20px;
+  background: var(--surface-base);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.panel-header.draggable {
+  cursor: grab;
+}
+
+.panel-header.draggable:active,
+.panel-header.active {
+  cursor: grabbing;
+  background: rgba(0, 212, 170, 0.06);
+  box-shadow: 0 2px 12px rgba(0, 212, 170, 0.12);
+}
+
+.panel-header-title {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.panel-header.left,
+.panel-header.right {
+  border-bottom: none;
+  border-right: 1px solid var(--border-subtle);
+  writing-mode: horizontal-tb;
+  flex-direction: row;
+  align-items: center;
+}
+
+.panel-header.bottom {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: none;
+  order: 2;
+}
+
+.panel-tab-list {
+  display: flex;
+  gap: 2px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.panel-tab-list.top {
+  order: 1;
+}
+
+.panel-tab-list.bottom {
+  order: 1;
+  border-bottom: none;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.panel-tab-list.left,
+.panel-tab-list.right {
+  flex-direction: column;
+  padding: 6px 0;
+  border-right: 1px solid var(--border-subtle);
+  min-width: 80px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.panel-tab-list.right {
+  border-right: none;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.panel-tab {
+  padding: 6px 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.panel-tab:hover {
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--text-primary);
+}
+
+.panel-tab.active {
+  background: var(--accent-teal);
+  color: var(--bg-primary);
+  box-shadow: 0 2px 8px rgba(0, 212, 170, 0.25);
+}
+
+.panel-tab-list.left .panel-tab,
+.panel-tab-list.right .panel-tab {
+  padding: 8px 12px;
+  border-radius: 4px 0 0 4px;
+  text-align: left;
+}
+
+.panel-tab-list.right .panel-tab {
+  border-radius: 0 4px 4px 0;
+}
+
+.panel-tab-content {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.panel-vertical-tabs {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.panel-vertical-tabs .panel-tab-content {
+  flex: 1;
+}
+
+.panel-content {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+/* Resize handles */
+.panel-handle {
+  position: absolute;
+  z-index: 10;
+}
+
+.panel-handle.right {
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.panel-handle.left {
+  top: 0;
+  left: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+
+.panel-handle.bottom {
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.panel-handle.top {
+  top: -3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.panel-handle.top.right {
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  cursor: nesw-resize;
+}
+
+.panel-handle.top.left {
+  top: -3px;
+  left: -3px;
+  width: 12px;
+  height: 12px;
+  cursor: nwse-resize;
+}
+
+.panel-handle.bottom.right {
+  bottom: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  cursor: nwse-resize;
+}
+
+.panel-handle.bottom.left {
+  bottom: -3px;
+  left: -3px;
+  width: 12px;
+  height: 12px;
+  cursor: nesw-resize;
+}
+
+/* Make the Panel match dark theme tokens */
+.panel {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.panel-header {
+  background: var(--surface-base);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-tab-list {
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-tab {
+  color: var(--text-secondary);
+}
+
+.panel-tab:hover {
+  background: rgba(0, 212, 170, 0.08);
+  color: var(--text-primary);
+}
+
+.panel-tab.active {
+  background: var(--accent-teal);
+  color: var(--bg-primary);
+}

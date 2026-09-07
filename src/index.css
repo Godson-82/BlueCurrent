@@ -1,0 +1,50 @@
+/* BlueCurrent Design Tokens */
+
+/* Stack Sans Notch — self-hosted variable font (SIL OFL 1.1). Single wght axis. */
+@font-face {
+  font-family: 'Stack Sans Notch';
+  src: url('./fonts/StackSansNotch-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-deep: #050a14;
+  --bg-surface: #0a1628;
+  --bg-card: #0d1f38;
+  --bg-card-hover: #112848;
+  --bg-elevated: #132d4f;
+  --border-subtle: rgba(100, 160, 200, 0.06);
+  --border-default: rgba(100, 160, 200, 0.1);
+  --border-accent: rgba(0, 212, 170, 0.25);
+
+  --text-primary: #e8edf5;
+  --text-secondary: #7a8fa8;
+  --text-muted: #4a5e76;
+
+  --accent-teal: #00d4aa;
+  --accent-blue: #3b82f6;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #22d3ee;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+
+  --font-sans: 'Stack Sans Notch', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { margin: 0; padding: 0; }
+#root { width: 100%; min-height: 100vh; }
