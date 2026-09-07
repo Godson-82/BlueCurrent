@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
+import logo from './assets/header-logo-themed.png';
 import { Compass, Plus, Fish, Droplets, Cpu, Activity } from 'lucide-react';
 import { io } from 'socket.io-client';
 import { get } from './api';
@@ -50,17 +51,6 @@ type ActiveTab =
   | 'evidence'
   | 'reports';
 
-/* ===== LOGO MARK ===== */
-function BlueCurrentMark({ size = 24 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-label="BlueCurrent">
-      <path d="M4 16c2-1.5 4-2.5 8-2.5s6 1 8 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M6 12c1.5-1 3-1.5 6-1.5s4.5.5 6 1.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.55" />
-      <path d="M8 8c1.2-.7 2.6-1 4-1s2.8.3 4 1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" opacity="0.3" />
-      <circle cx="17.5" cy="4" r="1.6" fill="currentColor" />
-    </svg>
-  );
-}
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<ActiveTab>('home');
@@ -178,44 +168,44 @@ export function App() {
     label: string;
     items: Array<{ id: ActiveTab; label: string; alert?: boolean }>;
   }> = [
-    {
-      id: 'discover',
-      label: 'Discover',
-      items: [
-        { id: 'map', label: 'Unified GIS Map' },
-        { id: 'pfz', label: 'PFZ Fisheries' },
-        { id: 'habitats', label: 'Fish Habitats' },
-      ],
-    },
-    {
-      id: 'safety',
-      label: 'Safety',
-      items: [
-        { id: 'safety', label: 'Safety Score' },
-        { id: 'alerts', label: 'Hazard Alerts', alert: alerts.some((a) => a.level === 'HIGH') },
-        { id: 'spills', label: 'Oil Spill SAR' },
-        { id: 'debris', label: 'Sonar Debris' },
-      ],
-    },
-    {
-      id: 'fleet',
-      label: 'Fleet',
-      items: [
-        { id: 'routes', label: 'Safe Routes' },
-        { id: 'vessels', label: 'AIS Fleet' },
-        { id: 'geofences', label: 'Geofencing' },
-      ],
-    },
-    {
-      id: 'ai',
-      label: 'AI Insights',
-      items: [
-        { id: 'swarm', label: 'AI Swarm' },
-        { id: 'evidence', label: 'Explainable AI' },
-        { id: 'reports', label: 'Ops Reports' },
-      ],
-    },
-  ];
+      {
+        id: 'discover',
+        label: 'Discover',
+        items: [
+          { id: 'map', label: 'Unified GIS Map' },
+          { id: 'pfz', label: 'PFZ Fisheries' },
+          { id: 'habitats', label: 'Fish Habitats' },
+        ],
+      },
+      {
+        id: 'safety',
+        label: 'Safety',
+        items: [
+          { id: 'safety', label: 'Safety Score' },
+          { id: 'alerts', label: 'Hazard Alerts', alert: alerts.some((a) => a.level === 'HIGH') },
+          { id: 'spills', label: 'Oil Spill SAR' },
+          { id: 'debris', label: 'Sonar Debris' },
+        ],
+      },
+      {
+        id: 'fleet',
+        label: 'Fleet',
+        items: [
+          { id: 'routes', label: 'Safe Routes' },
+          { id: 'vessels', label: 'AIS Fleet' },
+          { id: 'geofences', label: 'Geofencing' },
+        ],
+      },
+      {
+        id: 'ai',
+        label: 'AI Insights',
+        items: [
+          { id: 'swarm', label: 'AI Swarm' },
+          { id: 'evidence', label: 'Explainable AI' },
+          { id: 'reports', label: 'Ops Reports' },
+        ],
+      },
+    ];
 
   // Which group menu is currently open (click-to-toggle); null = all closed.
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -238,8 +228,7 @@ export function App() {
       {/* Navigation Header */}
       <nav className="app-nav anim-fade-only">
         <div className="nav-brand" onClick={() => setCurrentTab('home')}>
-          <BlueCurrentMark size={26} />
-          <span className="nav-brand-text">Blue<span>Current</span></span>
+          <img src={logo} alt="BlueCurrent" style={{ height: 82, width: 'auto' }} />
         </div>
 
         <div className="nav-links">
@@ -461,159 +450,159 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ stats, safety, setTab, onOpenGe
         className="hero-topography"
       />
       <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', alignItems: 'center', height: '100%' }}>
-      <div>
-        <div className="anim-fade anim-d1" style={{ display: 'inline-flex', alignItems: 'center', background: 'rgba(0, 212, 170, 0.07)', border: '1px solid rgba(0, 212, 170, 0.2)', padding: '5px 14px', borderRadius: 4, fontSize: '0.7rem', color: 'var(--accent-teal)', marginBottom: 12 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-teal)' }} />
-            <span className="shiny-text">BlueCurrent Marine Intelligence Suite</span>
-          </span>
-        </div>
-
-        <div className="anim-fade anim-d2">
-          <h1 className="hero-h1">
-            {'Autonomous Marine'.split(' ').map((w, i) => (
-              <span className="split-word" key={i} style={{ animationDelay: `${0.1 + i * 0.1}s` }}>{w}</span>
-            ))}
-          </h1>
-          <h1 className="hero-h1 gradient-text">
-            {'Ocean Intelligence.'.split(' ').map((w, i) => (
-              <span className="split-word" key={i} style={{ animationDelay: `${0.4 + i * 0.1}s` }}>{w}</span>
-            ))}
-          </h1>
-        </div>
-
-        <p className="anim-fade anim-d3" style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5, marginTop: 10, maxWidth: 460 }}>
-          Real-time multi-agent situational awareness fusing satellite SAR, bathymetric sonar, AIS fleet trajectories, and INCOIS fishery predictions.
-        </p>
-
-        <div className="anim-fade anim-d4" style={{ display: 'flex', gap: '12px', marginTop: 16 }}>
-          <MagneticButton>
-            <button className="btn-primary" onClick={() => setTab('map')}>
-              <Compass size={16} /> Launch Interactive GIS Map
-            </button>
-          </MagneticButton>
-          <MagneticButton>
-            <button className="btn-secondary" onClick={onOpenGeotag}>
-              <Plus size={15} /> Auto-Geotag Observation
-            </button>
-          </MagneticButton>
-        </div>
-
-        {/* Feature quick tiles */}
-        <div className="anim-fade anim-d6" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: 12 }}>
-          <TiltedCard
-            imageSrc={tileBg('%230d2b4a', '%23043a2c')}
-            altText="PFZ Fisheries"
-            containerHeight="150px"
-            containerWidth="100%"
-            imageWidth="100%"
-            imageHeight="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.05}
-            showMobileWarning={false}
-            showTooltip={false}
-            displayOverlayContent
-            overlayContent={
-              <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('pfz')}>
-                <div style={{ color: 'var(--accent-teal)', marginBottom: 6 }}><Fish size={18} /></div>
-                <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>PFZ Fisheries</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Satellite yield ranks</div>
-              </div>
-            }
-          />
-          <TiltedCard
-            imageSrc={tileBg('%23230e16', '%2335080e')}
-            altText="Oil Spill SAR"
-            containerHeight="150px"
-            containerWidth="100%"
-            imageWidth="100%"
-            imageHeight="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.05}
-            showMobileWarning={false}
-            showTooltip={false}
-            displayOverlayContent
-            overlayContent={
-              <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('spills')}>
-                <div style={{ color: 'var(--accent-red)', marginBottom: 6 }}><Droplets size={18} /></div>
-                <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>Oil Spill SAR</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Drift dispersion model</div>
-              </div>
-            }
-          />
-          <TiltedCard
-            imageSrc={tileBg('%231a1226', '%232b0f38')}
-            altText="AI Swarm Engine"
-            containerHeight="150px"
-            containerWidth="100%"
-            imageWidth="100%"
-            imageHeight="100%"
-            rotateAmplitude={10}
-            scaleOnHover={1.05}
-            showMobileWarning={false}
-            showTooltip={false}
-            displayOverlayContent
-            overlayContent={
-              <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('swarm')}>
-                <div style={{ color: 'var(--accent-purple)', marginBottom: 6 }}><Cpu size={18} /></div>
-                <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>AI Swarm Engine</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Multi-agent consensus</div>
-              </div>
-            }
-          />
-        </div>
-      </div>
-
-      {/* Live Acoustic Sweep Radar HUD */}
-      <div className="surface-elevated anim-fade anim-d3" style={{ padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px' }}>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span className="label-caps"><Activity size={11} style={{ verticalAlign: '-1px', marginRight: 4 }} /> Acoustic Bathymetric Sonar</span>
-          <SplitFlapText words={['LIVE PING', 'ACOUSTIC LIVE', 'SIGNAL LIVE']} loop cycleDelay={2400} fontSize={15} gap={3} tileRadius={4} tileColor="#0a1628" textColor="#00d4aa" flipDuration={0.16} stagger={45} />
-        </div>
-
-        {/* Sonar Canvas */}
-        <div className="sonar-container">
-          <div className="sonar-crosshair" />
-          <div className="sonar-rings">
-            <span className="sonar-ring" />
-            <span className="sonar-ring" />
-            <span className="sonar-ring" />
-            <span className="sonar-ring-pulse" />
-            <span className="sonar-ring-pulse" />
+        <div>
+          <div className="anim-fade anim-d1" style={{ display: 'inline-flex', alignItems: 'center', background: 'rgba(0, 212, 170, 0.07)', border: '1px solid rgba(0, 212, 170, 0.2)', padding: '5px 14px', borderRadius: 4, fontSize: '0.7rem', color: 'var(--accent-teal)', marginBottom: 12 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-teal)' }} />
+              <span className="shiny-text">BlueCurrent Marine Intelligence Suite</span>
+            </span>
           </div>
-          <div className="sonar-sweep" />
-          <span className="sonar-dot" style={{ top: '28%', left: '62%' }} />
-          <span className="sonar-dot" style={{ top: '58%', left: '78%' }} />
-          <span className="sonar-dot alert" style={{ top: '70%', left: '32%' }} />
-          <span className="sonar-dot warning" style={{ top: '38%', left: '25%' }} />
-          <div className="sonar-center" />
-          <span className="sonar-label" style={{ top: '10%', left: '10%' }}>18.4°N</span>
-          <span className="sonar-label" style={{ top: '10%', right: '10%' }}>84.2°E</span>
-          <span className="sonar-label" style={{ bottom: '8%', left: '50%', transform: 'translateX(-50%)' }}>RADAR ACTIVE</span>
+
+          <div className="anim-fade anim-d2">
+            <h1 className="hero-h1">
+              {'Autonomous Marine'.split(' ').map((w, i) => (
+                <span className="split-word" key={i} style={{ animationDelay: `${0.1 + i * 0.1}s` }}>{w}</span>
+              ))}
+            </h1>
+            <h1 className="hero-h1 gradient-text">
+              {'Ocean Intelligence.'.split(' ').map((w, i) => (
+                <span className="split-word" key={i} style={{ animationDelay: `${0.4 + i * 0.1}s` }}>{w}</span>
+              ))}
+            </h1>
+          </div>
+
+          <p className="anim-fade anim-d3" style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5, marginTop: 10, maxWidth: 460 }}>
+            Real-time multi-agent situational awareness fusing satellite SAR, bathymetric sonar, AIS fleet trajectories, and INCOIS fishery predictions.
+          </p>
+
+          <div className="anim-fade anim-d4" style={{ display: 'flex', gap: '12px', marginTop: 16 }}>
+            <MagneticButton>
+              <button className="btn-primary" onClick={() => setTab('map')}>
+                <Compass size={16} /> Launch Interactive GIS Map
+              </button>
+            </MagneticButton>
+            <MagneticButton>
+              <button className="btn-secondary" onClick={onOpenGeotag}>
+                <Plus size={15} /> Auto-Geotag Observation
+              </button>
+            </MagneticButton>
+          </div>
+
+          {/* Feature quick tiles */}
+          <div className="anim-fade anim-d6" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginTop: 12 }}>
+            <TiltedCard
+              imageSrc={tileBg('%230d2b4a', '%23043a2c')}
+              altText="PFZ Fisheries"
+              containerHeight="150px"
+              containerWidth="100%"
+              imageWidth="100%"
+              imageHeight="100%"
+              rotateAmplitude={10}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={false}
+              displayOverlayContent
+              overlayContent={
+                <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('pfz')}>
+                  <div style={{ color: 'var(--accent-teal)', marginBottom: 6 }}><Fish size={18} /></div>
+                  <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>PFZ Fisheries</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Satellite yield ranks</div>
+                </div>
+              }
+            />
+            <TiltedCard
+              imageSrc={tileBg('%23230e16', '%2335080e')}
+              altText="Oil Spill SAR"
+              containerHeight="150px"
+              containerWidth="100%"
+              imageWidth="100%"
+              imageHeight="100%"
+              rotateAmplitude={10}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={false}
+              displayOverlayContent
+              overlayContent={
+                <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('spills')}>
+                  <div style={{ color: 'var(--accent-red)', marginBottom: 6 }}><Droplets size={18} /></div>
+                  <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>Oil Spill SAR</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Drift dispersion model</div>
+                </div>
+              }
+            />
+            <TiltedCard
+              imageSrc={tileBg('%231a1226', '%232b0f38')}
+              altText="AI Swarm Engine"
+              containerHeight="150px"
+              containerWidth="100%"
+              imageWidth="100%"
+              imageHeight="100%"
+              rotateAmplitude={10}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={false}
+              displayOverlayContent
+              overlayContent={
+                <div style={{ padding: '14px', cursor: 'pointer', height: '100%', boxSizing: 'border-box' }} onClick={() => setTab('swarm')}>
+                  <div style={{ color: 'var(--accent-purple)', marginBottom: 6 }}><Cpu size={18} /></div>
+                  <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-primary)' }}>AI Swarm Engine</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', marginTop: 2 }}>Multi-agent consensus</div>
+                </div>
+              }
+            />
+          </div>
         </div>
 
-        {/* Live Counters */}
-        <div style={{ width: '100%', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
-          <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('vessels')}>
-            <div className="label-caps">Fleet Guided</div>
-            <div className="stat-number" style={{ fontSize: '1.2rem', color: 'var(--accent-teal)' }}>
-              <CountUp to={stats?.vesselsGuided ?? 12} suffix={stats?.vesselsGuided ? '+' : 'K+'} duration={1.8} separator />
+        {/* Live Acoustic Sweep Radar HUD */}
+        <div className="surface-elevated anim-fade anim-d3" style={{ padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '18px' }}>
+          <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span className="label-caps"><Activity size={11} style={{ verticalAlign: '-1px', marginRight: 4 }} /> Acoustic Bathymetric Sonar</span>
+            <SplitFlapText words={['LIVE PING', 'ACOUSTIC LIVE', 'SIGNAL LIVE']} loop cycleDelay={2400} fontSize={15} gap={3} tileRadius={4} tileColor="#0a1628" textColor="#00d4aa" flipDuration={0.16} stagger={45} />
+          </div>
+
+          {/* Sonar Canvas */}
+          <div className="sonar-container">
+            <div className="sonar-crosshair" />
+            <div className="sonar-rings">
+              <span className="sonar-ring" />
+              <span className="sonar-ring" />
+              <span className="sonar-ring" />
+              <span className="sonar-ring-pulse" />
+              <span className="sonar-ring-pulse" />
+            </div>
+            <div className="sonar-sweep" />
+            <span className="sonar-dot" style={{ top: '28%', left: '62%' }} />
+            <span className="sonar-dot" style={{ top: '58%', left: '78%' }} />
+            <span className="sonar-dot alert" style={{ top: '70%', left: '32%' }} />
+            <span className="sonar-dot warning" style={{ top: '38%', left: '25%' }} />
+            <div className="sonar-center" />
+            <span className="sonar-label" style={{ top: '10%', left: '10%' }}>18.4°N</span>
+            <span className="sonar-label" style={{ top: '10%', right: '10%' }}>84.2°E</span>
+            <span className="sonar-label" style={{ bottom: '8%', left: '50%', transform: 'translateX(-50%)' }}>RADAR ACTIVE</span>
+          </div>
+
+          {/* Live Counters */}
+          <div style={{ width: '100%', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+            <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('vessels')}>
+              <div className="label-caps">Fleet Guided</div>
+              <div className="stat-number" style={{ fontSize: '1.2rem', color: 'var(--accent-teal)' }}>
+                <CountUp to={stats?.vesselsGuided ?? 12} suffix={stats?.vesselsGuided ? '+' : 'K+'} duration={1.8} separator />
+              </div>
+            </div>
+            <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('pfz')}>
+              <div className="label-caps">PFZ Zones</div>
+              <div className="stat-number" style={{ fontSize: '1.2rem', color: 'var(--accent-blue)' }}>
+                <CountUp to={stats?.pfzZones ?? 4} duration={1.4} />
+              </div>
+            </div>
+            <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('alerts')}>
+              <div className="label-caps">Risk Level</div>
+              <div className="stat-number" style={{ fontSize: '1.2rem', color: safety && safety.score > 50 ? 'var(--accent-amber)' : 'var(--accent-teal)' }}>
+                <CountUp to={safety?.score ?? 38} suffix="/100" duration={1.6} />
+              </div>
             </div>
           </div>
-          <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('pfz')}>
-            <div className="label-caps">PFZ Zones</div>
-            <div className="stat-number" style={{ fontSize: '1.2rem', color: 'var(--accent-blue)' }}>
-              <CountUp to={stats?.pfzZones ?? 4} duration={1.4} />
-            </div>
-          </div>
-          <div className="surface-inset" style={{ padding: '10px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setTab('alerts')}>
-            <div className="label-caps">Risk Level</div>
-            <div className="stat-number" style={{ fontSize: '1.2rem', color: safety && safety.score > 50 ? 'var(--accent-amber)' : 'var(--accent-teal)' }}>
-              <CountUp to={safety?.score ?? 38} suffix="/100" duration={1.6} />
-            </div>
-          </div>
         </div>
-      </div>
       </div>
     </div>
   );
