@@ -60,7 +60,6 @@ export const Panel: React.FC<PanelProps> = ({
     dirY: 0,
   });
 
-  const isHorizontal = direction === 'left' || direction === 'right';
 
   // Drag handlers
   const onDragStart = useCallback(
