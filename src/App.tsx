@@ -33,7 +33,7 @@ import {
 } from './components/effects';
 
 // Live WebSocket connection
-const socket = io();
+const socket = io(import.meta.env.VITE_WS_URL || undefined);
 
 type ActiveTab =
   | 'home'
