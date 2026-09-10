@@ -109,8 +109,8 @@ export const PFZRecommendationsView: React.FC<PFZRecommendationsViewProps> = ({
                   center={[z.lat, z.lng]}
                   radius={z.radius_m}
                   pathOptions={{
-                    color: i === 0 ? '#00d4aa' : '#3b82f6',
-                    fillColor: i === 0 ? '#00d4aa' : '#3b82f6',
+                    color: i === 0 ? '#3b82f6' : '#3b82f6',
+                    fillColor: i === 0 ? '#3b82f6' : '#3b82f6',
                     fillOpacity: i === 0 ? 0.28 : 0.16,
                     weight: 2,
                   }}

@@ -127,7 +127,7 @@ export const AISVesselCorrelation: React.FC<AISVesselCorrelationProps> = ({
               {trackPoints.length > 0 && (
                 <Polyline
                   positions={trackPoints}
-                  pathOptions={{ color: '#00d4aa', weight: 3.5, dashArray: '4, 6' }}
+                  pathOptions={{ color: '#3b82f6', weight: 3.5, dashArray: '4, 6' }}
                 />
               )}
             </MapContainer>

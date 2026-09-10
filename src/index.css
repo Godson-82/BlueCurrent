@@ -9,6 +9,17 @@
   font-display: swap;
 }
 
+/* Cosmic (pyrs, ©2013 Seung Kim) — mono/display face used for telemetry labels.
+   Declared as a single 400 face so browsers synthesize bold for 600/700 requests
+   (the file itself has only a Regular outline). */
+@font-face {
+  font-family: 'Cosmic';
+  src: url('./fonts/cosmic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-deep: #050a14;
   --bg-surface: #0a1628;
@@ -40,7 +51,7 @@
   --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
 
   --font-sans: 'Stack Sans Notch', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-mono: 'Cosmic', 'SF Mono', ui-monospace, monospace;
 }
 
 /* Reset */

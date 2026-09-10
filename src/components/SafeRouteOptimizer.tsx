@@ -190,7 +190,7 @@ export const SafeRouteOptimizer: React.FC<SafeRouteOptimizerProps> = ({
               {planned && (
                 <Polyline
                   positions={planned.waypoints}
-                  pathOptions={{ color: '#00d4aa', weight: 4.5, opacity: 0.95 }}
+                  pathOptions={{ color: '#3b82f6', weight: 4.5, opacity: 0.95 }}
                 />
               )}
             </MapContainer>

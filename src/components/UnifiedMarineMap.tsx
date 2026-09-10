@@ -90,13 +90,13 @@ export const UnifiedMarineMap: React.FC<UnifiedMarineMapProps> = ({
 
   const layerItems = [
     { key: 'vessels' as const, label: 'AIS Live Vessels', count: vessels.length, icon: <Navigation size={14} />, color: 'var(--accent-teal)' },
-    { key: 'pfz' as const, label: 'PFZ Fishing Zones', count: pfz.length, icon: <Fish size={14} />, color: '#00d4aa' },
+    { key: 'pfz' as const, label: 'PFZ Fishing Zones', count: pfz.length, icon: <Fish size={14} />, color: '#3b82f6' },
     { key: 'weather' as const, label: 'Sea Weather & Waves', count: weather.length, icon: <Waves size={14} />, color: '#3b82f6' },
     { key: 'spills' as const, label: 'Oil Spill Hazards', count: spills.length, icon: <Droplets size={14} />, color: '#ef4444' },
     { key: 'debris' as const, label: 'Marine Debris Clusters', count: debris.length, icon: <MapPin size={14} />, color: '#f59e0b' },
     { key: 'boundaries' as const, label: 'Smart Geofences & EEZ', count: boundaries.length, icon: <Globe2 size={14} />, color: '#8b5cf6' },
     { key: 'habitats' as const, label: 'Fish Habitats & Spawning', count: habitats.length, icon: <Fish size={14} />, color: '#22d3ee' },
-    { key: 'corridors' as const, label: 'Safe Corridors', count: corridors.length, icon: <RouteIcon size={14} />, color: '#60a5fa' },
+    { key: 'corridors' as const, label: 'Safe Corridors', count: corridors.length, icon: <RouteIcon size={14} />, color: '#3b82f6' },
     { key: 'alerts' as const, label: 'Geotagged Observations', count: alerts.length, icon: <AlertTriangle size={14} />, color: '#ec4899' },
   ];
 
@@ -208,10 +208,10 @@ export const UnifiedMarineMap: React.FC<UnifiedMarineMapProps> = ({
                   key={z.id}
                   center={[z.lat, z.lng]}
                   radius={z.radius_m}
-                  pathOptions={{ color: '#00d4aa', fillColor: '#00d4aa', fillOpacity: 0.22, weight: 2 }}
+                  pathOptions={{ color: '#3b82f6', fillColor: '#3b82f6', fillOpacity: 0.22, weight: 2 }}
                 >
                   <Popup>
-                    <div style={{ fontWeight: 700, color: '#00d4aa' }}>{z.name} (PFZ Zone)</div>
+                    <div style={{ fontWeight: 700, color: '#3b82f6' }}>{z.name} (PFZ Zone)</div>
                     <div>Yield Rating: {z.yield_pct}%</div>
                     <div>SST: {z.sst_c}°C · Chlorophyll: {z.chlorophyll}</div>
                     <div>Biomass: {z.density} · Distance: {z.distance_km} km</div>
